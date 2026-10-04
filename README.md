@@ -28,6 +28,8 @@ A personal planner web app for tracking daily things - work, exams, assignments 
 | `N/A` |  |
 
 ## ⚙️ Setup
+*📌 Note: app is still not finished so running it may result in the default web app from the ASP.NET MVC template in Visual Studio or an unfinished app (will work just unfinished and with bare UI)*
+
 *Requires .NET 8 SDK and SQL Server*
 
 1. **Clone the repository**
