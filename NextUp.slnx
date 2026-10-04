@@ -1,3 +1,6 @@
 <Solution>
+  <Folder Name="/SolutionFolder/">
+    <File Path="README.md" />
+  </Folder>
   <Project Path="NextUp.csproj" />
 </Solution>
