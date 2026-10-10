@@ -10,8 +10,18 @@ namespace NextUp.Data
         public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<TaskTag> TaskTags { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Tag>()
+                .HasOne(t => t.Category)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
