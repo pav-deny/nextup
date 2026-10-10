@@ -26,6 +26,9 @@ namespace NextUp.Models
         [MaxLength(500)]
         public string? Notes { get; set; }
 
+        public bool IsCompletable { get; set; } //If it's a to-do task
+        public bool IsCompleted { get; set; }
+
         public ICollection<TaskTag> TaskTags { get; set; } = new List<TaskTag>();
     }
 }
