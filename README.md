@@ -21,11 +21,14 @@ A personal planner web app for tracking daily things - work, exams, assignments 
 
 ## 📊 Data model
 
-*No data models implemented yet.*
+*📌Note: app is still in development so categories are not implemented to anything yet and some of the logic isn't made yet*
 
 | Entity | Purpose |
 |---|---|
-| `N/A` |  |
+| `Category` | User-created categories (plus a seeded `Global` category always exists) |
+| `Tag` | Tags for tasks that also belong to a category |
+| `TaskItem` | Tasks and to-do style tasks (`IsCompletable` makes them to-do tasks) |
+| `TaskTag` | Join table for the many-to-many link between tasks and tags |
 
 ## ⚙️ Setup
 *📌 Note: app is still not finished so running it may result in the default web app from the ASP.NET MVC template in Visual Studio or an unfinished app (will work just unfinished and with bare UI)*
