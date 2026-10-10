@@ -26,6 +26,6 @@ namespace NextUp.Models
         [MaxLength(500)]
         public string? Notes { get; set; }
 
-        public ICollection<TaskTag> TaskTags { get; set; }
+        public ICollection<TaskTag> TaskTags { get; set; } = new List<TaskTag>();
     }
 }

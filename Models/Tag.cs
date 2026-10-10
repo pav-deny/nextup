@@ -19,6 +19,6 @@ namespace NextUp.Models
 
         public Category Category { get; set; }
 
-        public ICollection<TaskTag> TaskTags { get; set; }
+        public ICollection<TaskTag> TaskTags { get; set; } = new List<TaskTag>();
     }
 }
