@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using NextUp.Models;
+using NextUp.ViewModels;
 using System.Diagnostics;
 
 namespace NextUp.Controllers

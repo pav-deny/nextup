@@ -1,4 +1,4 @@
-namespace NextUp.Models
+namespace NextUp.ViewModels
 {
     public class ErrorViewModel
     {
