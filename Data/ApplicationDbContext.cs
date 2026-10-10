@@ -22,6 +22,9 @@ namespace NextUp.Data
                 .HasOne(t => t.Category)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category { Id = 1, Name = "Global", ColorHex = "#D1D1D1" });
         }
     }
 }
