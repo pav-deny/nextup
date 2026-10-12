@@ -76,5 +76,51 @@ namespace NextUp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == 1)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            Category? category = await _context.Categories.FindAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (id == 1)
+            {
+                return BadRequest();
+            }
+
+            Category? category = await _context.Categories.FindAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            if (await _context.Tags.AnyAsync(t => t.CategoryId == id))
+            {
+                ModelState.AddModelError(string.Empty, "Remove this categoey's tags first.");
+                return View(category);
+            }
+
+            _context.Remove(category);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
