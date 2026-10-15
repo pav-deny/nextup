@@ -17,7 +17,7 @@ namespace NextUp.Models
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public ICollection<TaskTag> TaskTags { get; set; } = new List<TaskTag>();
     }
