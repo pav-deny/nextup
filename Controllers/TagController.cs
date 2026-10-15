@@ -102,5 +102,35 @@ namespace NextUp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Tag? tag = await _context.Tags.Include(t => t.Category).FirstOrDefaultAsync(t => t.Id == id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            return View(tag);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Tag? tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            _context.Tags.Remove(tag);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
