@@ -25,7 +25,7 @@ namespace NextUp.Controllers
         private async Task LoadCategoriesAsync()
         {
             List<Category> categories = await _context.Categories.ToListAsync();
-            ViewBag.Categories = new SelectList(categories, "Id", "Name"); 
+            ViewBag.Categories = new SelectList(categories, "Id", "Name");
         }
 
 
@@ -56,6 +56,50 @@ namespace NextUp.Controllers
 
             _context.Tags.Add(tag);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            await LoadCategoriesAsync();
+
+            Tag? tag = await _context.Tags.FindAsync(id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            return View(tag);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Tag tag)
+        {
+            if (tag.Id != id)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                await LoadCategoriesAsync();
+                return View(tag);
+            }
+
+            bool isDuplicate = await _context.Tags.AnyAsync(t => t.CategoryId == tag.CategoryId && t.Name == tag.Name && t.Id != tag.Id);
+
+            if (isDuplicate)
+            {
+                await LoadCategoriesAsync();
+                ModelState.AddModelError(nameof(tag.Name), "A tag with that name already exists in this category!");
+                return View(tag);
+            }
+
+            _context.Update(tag);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
     }
