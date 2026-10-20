@@ -1,22 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NextUp.Data;
 using NextUp.Models;
+using NextUp.Services.Interfaces;
 
 namespace NextUp.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryService _service;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(ICategoryService service)
         {
-            _context = context;
+            _service = service;
         }
-         
+
         public async Task<IActionResult> Index()
         {
-            List<Category> categories = await _context.Categories.ToListAsync();
+            List<Category> categories = await _service.GetAllAsync();
             return View(categories);
         }
 
@@ -34,9 +33,13 @@ namespace NextUp.Controllers
                 return View(category);
             }
 
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            if (await _service.IsDuplicateAsync(category))
+            {
+                ModelState.AddModelError(nameof(category.Name), "A category with this name already exists");
+                return View(category);
+            }
 
+            await _service.CreateAsync(category);
             return RedirectToAction(nameof(Index));
         }
 
@@ -48,7 +51,7 @@ namespace NextUp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            Category? category = await _context.Categories.FindAsync(id);
+            Category? category = await _service.GetByIdAsync(id);
 
             if (category == null)
             {
@@ -71,9 +74,13 @@ namespace NextUp.Controllers
                 return View(category);
             }
 
-            _context.Update(category);
-            await _context.SaveChangesAsync();
+            if (await _service.IsDuplicateAsync(category))
+            {
+                ModelState.AddModelError(nameof(category.Name), "A category with this name already exists");
+                return View(category);
+            }
 
+            await _service.UpdateAsync(category);
             return RedirectToAction(nameof(Index));
         }
 
@@ -85,7 +92,7 @@ namespace NextUp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            Category? category = await _context.Categories.FindAsync(id);
+            Category? category = await _service.GetByIdAsync(id);
 
             if (category == null)
             {
@@ -99,26 +106,12 @@ namespace NextUp.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (id == 1)
+            bool isDeleted = await _service.DeleteAsync(id);
+
+            if (!isDeleted)
             {
                 return BadRequest();
             }
-
-            Category? category = await _context.Categories.FindAsync(id);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            if (await _context.Tags.AnyAsync(t => t.CategoryId == id))
-            {
-                ModelState.AddModelError(string.Empty, "Remove this categoey's tags first.");
-                return View(category);
-            }
-
-            _context.Remove(category);
-            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
