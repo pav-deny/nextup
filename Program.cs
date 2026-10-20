@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NextUp.Data;
+using NextUp.Services;
+using NextUp.Services.Interfaces;
 
 namespace NextUp
 {
@@ -16,6 +18,8 @@ namespace NextUp
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 
