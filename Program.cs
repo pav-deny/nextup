@@ -20,6 +20,7 @@ namespace NextUp
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ITagService, TagService>();
 
             var app = builder.Build();
 
