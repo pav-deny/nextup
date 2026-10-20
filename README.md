@@ -9,13 +9,15 @@ What's next at a glance - organize upcoming events, tasks and to-do lists so you
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 # 📋 Table of contents
-- [About the project](#about-the-project)
-- [Features](#features)
-- [Tech stack](#tech-stack)
-- [Data model](#data-model)
-- [Project structure](#project-structure)
-- [Setup](#setup)
-- [Future plans](#future-plans)
+- [About the project](#%E2%84%B9%EF%B8%8Fabout-the-project)
+- [Features](#-features)
+- [Tech stack](#%EF%B8%8F-tech-stack)
+- [Data model](#-data-model)
+- [Project structure](#-project-structure)
+- [Setup](#%EF%B8%8F-setup)
+- [Future plans](#-future-plans)
+- [License](#%EF%B8%8F-license)
+- [Contacts](#-contacts)
 
 # ℹ️About the project
 
