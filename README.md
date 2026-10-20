@@ -1,69 +1,83 @@
-# NextUp
+# NextUp [EARLY STAGE]
 
-A personal planner web app for tracking daily things - work, exams, assignments and more in one ordered place.
+*📌This app is still in early development - not all features have been implemented. This document isn't full either as it needs a "full version" (simple task management) to include things like tasks and a setup guide*
 
-*📌 Note: this project is still in early development. This README is just a base that will have content added alongside the project*
+What's next at a glance - organize upcoming events, tasks and to-do lists so you can manage your time.
 
-## 🚀 Features
-*No features have been implemented yet*
+![.NET Version](https://img.shields.io/badge/.NET-8.0-purple)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-8.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-## 🛠️ Tech stack
+# 📋 Table of contents
+- [About the project](#about-the-project)
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Data model](#data-model)
+- [Project structure](#project-structure)
+- [Setup](#setup)
+- [Future plans](#future-plans)
 
-### Front-end
-* **HTML5 | CSS3 | JavaScript**
-* **Bootstrap** (UI Framework)
+# ℹ️About the project
 
+NextUp is a task management web app built as the final project for the `ASP.NET Fundamentals` course at `SoftUni`. It is currently in a local self-hosted state but I plan on expanding it after I finish the course.
 
-### Back-end
-* **ASP.NET Core 8.0 (MVC Architecture)**
-* **Entity Framework Core**
-* **SQL Server**
+NextUp allows you to track upcoming events, tasks and to-do lists. You can sort them by cateogries and tags.
 
-## 📊 Data model
+# 🚀 Features
+*list coming when full version releases*
 
-*📌Note: app is still in development so categories are not implemented to anything yet and some of the logic isn't made yet*
+# 🛠️ Tech stack
+
+| Technology | Version | Purpose |
+| ------------ | ---------- | --------- |
+| `ASP.NET Core MVC` | 8.0 | Web framework |
+| `Entity Framework Core` | 8.0 | ORM / Database access |
+| `SQL Server` | - | Database |
+| `Bootstrap` | 5.3 | Front-end styling |
+| `Razor Pages / Views` | - | Server-side HTML rendering |
+
+# 📊 Data model
 
 | Entity | Purpose |
-|---|---|
-| `Category` | User-created categories (plus a seeded `Global` category always exists) |
-| `Tag` | Tags for tasks that also belong to a category |
-| `TaskItem` | Tasks and to-do style tasks (`IsCompletable` makes them to-do tasks) |
-| `TaskTag` | Join table for the many-to-many link between tasks and tags |
+| ---- | ---|
+| `Category` | Contains the categories created by the user and seeded from the server (like Global) |
+| `Tag` | Contains the tags created by the user |
+| `TaskItem` | Contains the tasks created by the user |
+| `TaskTag` | Contains a many-to-many join between the `Tags` and the `Tasks` |
 
-## ⚙️ Setup
-*📌 Note: app is still not finished so running it may result in the default web app from the ASP.NET MVC template in Visual Studio or an unfinished app (will work just unfinished and with bare UI)*
+# 📂 Project structure
 
-*📌 Note: instructions are also a placeholder and may not be correct*
-
-*Requires .NET 8 SDK and SQL Server*
-
-1. **Clone the repository**
-``` bash
-git clone https://github.com/pav-deny/nextup.git
-cd NextUp
 ```
 
-2. **Restore packages**
-``` bash
-dotnet restore
+NextUp/
+│
+├── Controllers/             # MVC Controllers
+├── Models/                  # Database Models
+├── Views/                   # Razor Views (.cshtml)
+├── ViewModels/              # ViewModels
+├── Data/                    # DbContext
+├── Migrations/              # Migrations
+├── Services/                # Business logic / service layer
+├── wwwroot/                 # Static files (CSS, JS, images)
+├── appsettings.json         # App configuration
+└── Program.cs               # Entry point for app and setup
+
 ```
 
-3. **Configure the connection string** (if you're not using LocalDB)
+# ⚙️ Setup 
 
-* Open `appsettings.json` and verify that the database connection string points to the local SQL Server Instance you are using (defaults to LocalDB)
+Instructions coming soon (when app has a full version)
 
-4. **Apply database migrations**
-``` bash
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
+# 🎯 Future plans 
 
-5. **Run the app**
-``` bash
-dotnet run
-```
+Like mentioned above, this web app is made as a project for the `ASP.NET Fundamentals` course at `SoftUni`. But I wish to continue developing it and one day making it a web app available online.
 
-6. **Open the app through prompted URL (e.g. `https://localhost:5001`)**
+# ⚖️ License
 
-## 🎯 Future plans
-*Although this is made as a course project, I plan to continue developing it and hopefully make it into a full web app in the future*
+This project is licensed with an `MIT License`. See the [LICENSE](LICENSE) file for details
+
+# 📫 Contacts
+
+**Deni Pavlov** 
+
+**GitHub** [@pav-deny](https://github.com/pav-deny)
