@@ -21,7 +21,7 @@ namespace NextUp.Models
 
         public DateTime EditedOn { get; set; }
 
-        public DateTime? DueDateTime { get; set; }
+        public DateTime DueDateTime { get; set; }
 
         [MaxLength(500)]
         public string? Notes { get; set; }
