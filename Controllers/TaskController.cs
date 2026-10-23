@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NextUp.Models;
 using NextUp.Services.Interfaces;
 
 namespace NextUp.Controllers
@@ -10,6 +11,12 @@ namespace NextUp.Controllers
         public TaskController(ITaskService taskService)
         {
             _taskService = taskService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            List<TaskItem> tasks = await _taskService.GetAllAsync();
+            return View(tasks);
         }
     }
 }
