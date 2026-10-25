@@ -77,6 +77,33 @@ namespace NextUp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            TaskItem? task = await _taskService.GetByIdAsync(id);
+
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            return View(task);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            bool isDeleted = await _taskService.DeleteAsync(id);
+
+            if (!isDeleted)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         private async Task LoadFormDataAsync(List<int>? selectedTagIds = null)
         {
             List<Category> categories = await _categoryService.GetAllAsync();
