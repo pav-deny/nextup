@@ -230,3 +230,24 @@ h1, h2, h3, .navbar-brand {
     border-color: #F5F2FF;
     box-shadow: 0 0 0 3px rgba(245, 242, 255, 0.25);
 }
+
+.category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    font-size: 0.85rem;
+}
+
+.category-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.text-warning-nextup {
+    color: #FF9B9B;
+}
