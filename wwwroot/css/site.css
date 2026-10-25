@@ -251,3 +251,104 @@ h1, h2, h3, .navbar-brand {
 .text-warning-nextup {
     color: #FF9B9B;
 }
+
+.tag-pill {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    margin: 0 0.25rem 0.25rem 0;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #CFC8EA;
+    font-size: 0.8rem;
+}
+
+.form-select[multiple] option {
+    padding: 0.3rem 0.5rem;
+}
+
+.tag-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-toggle {
+    cursor: pointer;
+}
+
+.tag-toggle input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tag-toggle span {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #CFC8EA;
+    font-size: 0.85rem;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.tag-toggle:hover span {
+    border-color: rgba(209, 92, 201, 0.6);
+}
+
+.tag-toggle input:checked + span {
+    background: linear-gradient(100deg, rgba(255, 140, 90, 0.25), rgba(76, 110, 245, 0.25));
+    border-color: #D15CC9;
+    color: #F5F2FF;
+}
+
+input[type="datetime-local"] {
+    color-scheme: dark;
+}
+
+.tag-toggle.is-global span,
+.tag-pill.is-global {
+    display: inline-flex;
+    align-items: center;
+}
+
+.tag-toggle.is-global span::before,
+.tag-pill.is-global::before {
+    content: "";
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    margin-right: 0.45rem;
+    border-radius: 50%;
+    background: #D1D1D1;
+    transform: translateY(1px);
+}
+
+.btn-action:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-action:focus-visible {
+    outline: 2px solid #B2A6DE;
+    outline-offset: 2px;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+}
+
+.btn-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
