@@ -110,7 +110,8 @@ namespace NextUp.Controllers
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
             List<Tag> tags = await _tagService.GetAllAsync();
-            ViewBag.Tags = new MultiSelectList(tags, "Id", "Name", selectedTagIds);
+            ViewBag.TagList = tags;
+            ViewBag.SelectedTagIds = selectedTagIds ?? new List<int>();
         }
     }
 }
