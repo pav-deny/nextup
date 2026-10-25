@@ -18,5 +18,74 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Global User Interface', system-ui, sans-serif;
+    background-color: #140B2B;
+    color: #F5F2FF;
+}
+
+/* Footer */
+
+.footer-nextup > div > a {
+    color: #F5F2FF;
+}
+
+.footer-nextup > div > a:hover {
+    color: #D15CC9;
+}
+
+.footer-nextup {
+    background-color: #1F1440;
+    color: #F5F2FF;
+}
+
+.footer-nextup > div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+}
+
+/* Navigation bar */
+.navbar-nextup {
+    background-color: #1F1440;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 0.9rem 0;
+}
+
+.navbar-nextup .nav-link {
+    padding: 0.5rem 0.1rem;
+    color: #F5F2FF;
+}
+
+.nav-link:hover {
+    color: #7692ff;
+}
+
+/* Gradient text and buttons */
+.gradient-text {
+    background: linear-gradient(100deg, #FF8C5A, #D15CC9, #4C6EF5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.btn-gradient {
+    background: linear-gradient(100deg, #FF8C5A, #D15CC9, #4C6EF5);
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+    transition: background-position 0.4s ease;
+    color: #140B2B;
+    font-weight: 600;
+    border: 0;
+    border-radius: 0.6rem;
+    padding: 0.55rem 1.25rem;
+}
+
+.btn-gradient:hover {
+    background-position: 100% 0;
 }
