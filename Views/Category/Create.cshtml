@@ -1,36 +1,48 @@
 @model NextUp.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "New category";
 }
 
-<h1>Create</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <h1 class="mb-4">New category</h1>
+        <div class="card">
+            <div class="card-body p-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
+                    <div class="mb-4">
+                        <label class="form-label">Color</label>
+                        <div class="color-options">
+                            @foreach (var color in new[] { "#FF8C5A", "#D15CC9", "#4C6EF5", "#35D0A0", "#F5C451", "#FF6B6B", "#8B5CF6", "#2DD4BF" })
+                            {
+                                <label class="color-option" style="background:@color" title="@color">
+                                    <input type="radio" asp-for="ColorHex" value="@color" />
+                                </label>
+                            }
+                        </div>
+                        <span asp-validation-for="ColorHex" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="ColorHex" class="control-label"></label>
-                <input asp-for="ColorHex" class="form-control" />
-                <span asp-validation-for="ColorHex" class="text-danger"></span>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-gradient">Create</button>
+                        <a asp-action="Index" class="btn btn-action">Cancel</a>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

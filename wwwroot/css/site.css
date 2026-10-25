@@ -169,3 +169,62 @@ h1, h2, h3, .navbar-brand {
     background-color: rgba(255, 107, 107, 0.2);
     color: #FFC2C2;
 }
+
+/* Cards */
+.card {
+    --bs-card-bg: #1F1440;
+    background-color: #1F1440;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: #D6CFEF;
+}
+
+.form-control,
+.form-select {
+    background-color: #140B2B;
+    color: #F5F2FF;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #140B2B;
+    color: #F5F2FF;
+    border-color: #D15CC9;
+    box-shadow: 0 0 0 0.2rem rgba(209, 92, 201, 0.25);
+}
+
+.form-control::placeholder {
+    color: #A599CF;
+}
+
+.form-label {
+    color: #D6CFEF;
+}
+
+/* Color picker */
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.color-option {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-option input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+}
+
+.color-option:has(input:checked) {
+    border-color: #F5F2FF;
+    box-shadow: 0 0 0 3px rgba(245, 242, 255, 0.25);
+}
