@@ -44,13 +44,46 @@ namespace NextUp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task LoadFormDataAsync()
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            TaskItem? task = await _taskService.GetByIdAsync(id);
+            List<int> selectedIds = task.TaskTags.Select(tt => tt.TagId).ToList();
+
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            await LoadFormDataAsync(selectedIds);
+            return View(task);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(TaskItem task, int id, List<int>? tagIds)
+        {
+            if (task.Id != id)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                await LoadFormDataAsync();
+                return View(task);
+            }
+
+            await _taskService.UpdateAsync(task, tagIds);
+            return RedirectToAction(nameof(Index));
+        }
+
+        private async Task LoadFormDataAsync(List<int>? selectedTagIds = null)
         {
             List<Category> categories = await _categoryService.GetAllAsync();
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
             List<Tag> tags = await _tagService.GetAllAsync();
-            ViewBag.Tags = new SelectList(tags, "Id", "Name");
+            ViewBag.Tags = new MultiSelectList(tags, "Id", "Name", selectedTagIds);
         }
     }
 }
