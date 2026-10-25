@@ -89,3 +89,83 @@ h1, h2, h3, .navbar-brand {
 .btn-gradient:hover {
     background-position: 100% 0;
 }
+
+/* Category Index */
+
+.table-nextup {
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: transparent;
+    --bs-table-color: #F0ECFF;
+    color: #F0ECFF;
+}
+
+.table-nextup thead th {
+    border: 0;
+    color: #A599CF;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.table-nextup tbody tr td {
+    background-color: #1F1440;
+    border: 0;
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+}
+
+.table-nextup tbody tr td:first-child {
+    border-radius: 0.75rem 0 0 0.75rem;
+}
+
+.table-nextup tbody tr td:last-child {
+    border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.table-nextup tbody tr:hover td {
+    background-color: #2A1D54;
+}
+
+.table-nextup .cell-muted {
+    color: #A599CF
+}
+
+:root,
+[data-bs-theme="dark"] {
+    --bs-body-bg: #140B2B;
+    --bs-body-color: #D6CFEF;
+    --bs-secondary-color: #A599CF;
+    --bs-border-color: rgba(255, 255, 255, 0.09);
+    --bs-card-bg: #1F1440;
+    --bs-heading-color: #F0ECFF;
+    --bs-link-color-rgb: 178, 166, 222;
+    --bs-link-hover-color-rgb: 255, 140, 90;
+}
+
+/* Category Index - button */
+.btn-action {
+    background-color: rgba(178, 166, 222, 0.12);
+    color: #D6CFEF;
+    border: 1px solid rgba(178, 166, 222, 0.25);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.8rem;
+}
+
+.btn-action:hover {
+    background-color: rgba(178, 166, 222, 0.22);
+    color: #F5F2FF;
+}
+
+.btn-action-danger {
+    color: #FF9B9B;
+    border-color: rgba(255, 107, 107, 0.35);
+    background-color: rgba(255, 107, 107, 0.1);
+}
+
+.btn-action-danger:hover {
+    background-color: rgba(255, 107, 107, 0.2);
+    color: #FFC2C2;
+}
