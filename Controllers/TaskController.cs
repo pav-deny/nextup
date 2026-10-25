@@ -11,9 +11,11 @@ namespace NextUp.Controllers
         private readonly ICategoryService _categoryService;
         private readonly ITagService _tagService;
 
-        public TaskController(ITaskService taskService)
+        public TaskController(ITaskService taskService, ICategoryService categoryService, ITagService tagService)
         {
             _taskService = taskService;
+            _categoryService = categoryService;
+            _tagService = tagService;
         }
 
         public async Task<IActionResult> Index()
