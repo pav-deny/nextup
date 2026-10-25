@@ -1,12 +1,10 @@
 @model NextUp.Models.TaskItem
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "New task";
 }
 
-<h1>Create</h1>
-
-<h4>TaskItem</h4>
+<h1>New task</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,46 +19,28 @@
 
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <input asp-for="CategoryId" class="form-control" />
+                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="EditedOn" class="control-label"></label>
-                <input asp-for="EditedOn" class="form-control" />
-                <span asp-validation-for="EditedOn" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <label asp-for="DueDateTime" class="control-label"></label>
-                <input asp-for="DueDateTime" class="form-control" />
+                <input asp-for="DueDateTime" type="datetime-local" class="form-control" />
                 <span asp-validation-for="DueDateTime" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
+                <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="TaskTags" class="control-label"></label>
-                <input asp-for="TaskTags" class="form-control" />
-                <span asp-validation-for="TaskTags" class="text-danger"></span>
+                <label class="control-label">Tags</label>
+                <select name="tagIds" asp-items="ViewBag.Tags" multiple class="form-control"></select>
             </div>
-            <div class="form-group">
+
+            <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -70,3 +50,9 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
