@@ -94,17 +94,11 @@ namespace NextUp.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DueDateTime")
+                    b.Property<DateTime>("DueDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("EditedOn")
+                    b.Property<DateTime>("EditedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsCompletable")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
