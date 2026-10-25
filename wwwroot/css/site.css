@@ -147,6 +147,8 @@ h1, h2, h3, .navbar-brand {
 
 /* Category Index - button */
 .btn-action {
+    display: inline-flex;
+    align-items: center;
     background-color: rgba(178, 166, 222, 0.12);
     color: #D6CFEF;
     border: 1px solid rgba(178, 166, 222, 0.25);
