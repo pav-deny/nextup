@@ -1,8 +1,148 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using System.Globalization
+@model IEnumerable<NextUp.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Home";
+
+    var culture = CultureInfo.InvariantCulture;
+    var now = DateTime.Now;
+    var today = now.Date;
+
+    var comingUp = Model.Where(t => t.DueDateTime >= now).Take(8).GroupBy(t => t.DueDateTime.Date);
+
+    var byCategory = Model
+        .Where(t => t.DueDateTime >= now && t.Category != null)
+        .GroupBy(t => t.CategoryId)
+        .Select(g => new
+        {
+            Name = g.First().Category!.Name,
+            Color = g.First().Category!.ColorHex,
+            Count = g.Count()
+        })
+        .OrderByDescending(x => x.Count)
+        .ToList();
+
+    int maxCount = byCategory.Any() ? byCategory.Max(x => x.Count) : 1;
+
+    var firstOfMonth = new DateTime(today.Year, today.Month, 1);
+    int offset = ((int)firstOfMonth.DayOfWeek + 6) % 7;
+    int daysInMonth = DateTime.DaysInMonth(today.Year, today.Month);
+
+    var byDay = Model
+        .Where(t => t.DueDateTime.Year == today.Year && t.DueDateTime.Month == today.Month)
+        .GroupBy(t => t.DueDateTime.Day)
+        .ToDictionary(g => g.Key, g => g.ToList());
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div>
+        <h1 class="home-title mb-2">Coming <span class="home-gradient">up next</span></h1>
+    </div>
+    <a class="btn btn-gradient" asp-controller="Task" asp-action="Create">New task</a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <section class="home-panel" aria-labelledby="cu-h">
+            <div class="d-flex align-items-baseline justify-content-between gap-3 mb-2">
+                <h2 id="cu-h" class="panel-title">Coming up</h2>
+                <a asp-controller="Task" asp-action="Index">All tasks</a>
+            </div>
+
+            @if (!comingUp.Any())
+            {
+                <p class="text-secondary mt-4 mb-0">Nothing coming up. Create a task to get started.</p>
+            }
+
+            @foreach (var group in comingUp)
+            {
+                string label = group.Key == today ? "Today"
+                             : group.Key == today.AddDays(1) ? "Tomorrow"
+                             : group.Key.ToString("dddd, MMM d", culture);
+
+                <p class="up-label">@label</p>
+                @foreach (var item in group)
+                {
+                    <div class="up-row">
+                        <span class="up-time">@item.DueDateTime.ToString("HH:mm")</span>
+                        <span class="up-title">@item.Title</span>
+                        <div class="up-meta">
+                            <span class="up-chip" style="--c:@(item.Category?.ColorHex ?? "#D1D1D1")">
+                                <span class="up-dot"></span>@item.Category?.Name
+                            </span>
+                            @foreach (var tt in item.TaskTags)
+                            {
+                                <span class="up-tag @(tt.Tag.CategoryId == 1 ? "is-global" : "")">@tt.Tag.Name</span>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </section>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="d-flex flex-column gap-4">
+
+            <section class="home-panel panel-auto" aria-labelledby="cal-h">
+                <h2 id="cal-h" class="panel-title mb-3">@today.ToString("MMMM yyyy", culture)</h2>
+
+                <div class="cal-grid">
+                    @foreach (var d in new[] { "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" })
+                    {
+                        <div class="cal-head">@d</div>
+                    }
+
+                    @for (int i = 0; i < offset; i++)
+                    {
+                        <div></div>
+                    }
+
+                    @for (int day = 1; day <= daysInMonth; day++)
+                    {
+                        bool has = byDay.TryGetValue(day, out var dayTasks);
+                        bool isToday = day == today.Day;
+                        bool isPast = day < today.Day;
+
+                        <div class="cal-day @(isToday ? "is-today" : "") @(isPast ? "is-past" : "")"
+                             title="@(has ? string.Join(", ", dayTasks!.Select(t => t.Title)) : "")">
+                            <span class="cal-num">@day</span>
+                            <span class="cal-dots">
+                                @if (has)
+                                {
+                                    @foreach (var t in dayTasks!.Take(3))
+                                    {
+                                        <span class="cal-dot" style="background:@(t.Category?.ColorHex ?? "#D1D1D1")"></span>
+                                    }
+                                }
+                            </span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="home-panel panel-auto" aria-labelledby="bc-h">
+                <h2 id="bc-h" class="panel-title mb-4">By category</h2>
+
+                @if (!byCategory.Any())
+                {
+                    <p class="home-subtitle mb-0">No upcoming tasks yet.</p>
+                }
+
+                @foreach (var c in byCategory)
+                {
+                    <div class="cat-bar">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>@c.Name</span>
+                            <span class="home-subtitle">@c.Count @(c.Count == 1 ? "task" : "tasks")</span>
+                        </div>
+                        <div class="cat-track">
+                            <div class="cat-fill" style="width:@(c.Count * 100 / maxCount)%; background:@c.Color"></div>
+                        </div>
+                    </div>
+                }
+            </section>
+
+        </div>
+    </div>
 </div>

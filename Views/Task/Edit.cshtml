@@ -4,56 +4,87 @@
     ViewData["Title"] = "Edit task";
 }
 
-<h1>Edit task</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <h1 class="mb-4">Edit task</h1>
+        <div class="card">
+            <div class="card-body p-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
 
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="CategoryId" class="form-label">Category</label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-select"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="DueDateTime" class="form-label">Due</label>
+                            <input asp-for="DueDateTime" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="DueDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="DueDateTime" class="control-label"></label>
-                <input asp-for="DueDateTime" type="datetime-local" class="form-control" />
-                <span asp-validation-for="DueDateTime" class="text-danger"></span>
-            </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tags</label>
+                        <div class="tag-picker" id="tagPicker">
+                            @foreach (var tag in (List<NextUp.Models.Tag>)ViewBag.TagList)
+                            {
+                                <label class="tag-toggle @(tag.CategoryId == 1 ? "is-global" : "")" data-category="@tag.CategoryId"
+                                       title="@(tag.CategoryId == 1 ? "Global tag" : "")">
+                                    <input type="checkbox" name="tagIds" value="@tag.Id"
+                                           checked="@(((List<int>)ViewBag.SelectedTagIds).Contains(tag.Id))" />
+                                    <span>@tag.Name</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
+                    <div class="mb-4">
+                        <label asp-for="Notes" class="form-label"></label>
+                        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label class="control-label">Tags</label>
-                <select name="tagIds" asp-items="ViewBag.Tags" multiple class="form-control"></select>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-gradient">Save</button>
+                        <a asp-action="Index" class="btn btn-action">Cancel</a>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group mt-3">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        (function () {
+            const select = document.getElementById('CategoryId');
+            const toggles = document.querySelectorAll('#tagPicker .tag-toggle');
+
+            function filterTags() {
+                const selected = select.value;
+                toggles.forEach(function (t) {
+                    const show = t.dataset.category === selected || t.dataset.category === '1';
+                    t.style.display = show ? '' : 'none';
+                    if (!show) {
+                        t.querySelector('input').checked = false;
+                    }
+                });
+            }
+
+            select.addEventListener('change', filterTags);
+            filterTags();
+        })();
+    </script>
 }

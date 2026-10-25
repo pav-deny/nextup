@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using NextUp.Models;
+using NextUp.Services.Interfaces;
 using NextUp.ViewModels;
 using System.Diagnostics;
 
@@ -7,20 +9,19 @@ namespace NextUp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITaskService _taskService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITaskService taskService)
         {
             _logger = logger;
+            _taskService = taskService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            List<TaskItem> upcoming = (await _taskService.GetAllAsync()).OrderBy(t => t.DueDateTime).ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(upcoming);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
