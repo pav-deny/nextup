@@ -588,3 +588,18 @@ input[type="datetime-local"] {
     -webkit-text-fill-color: transparent;
     color: transparent;
 }
+
+/**/
+.navbar-toggler {
+    border: 0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 575px) {
+    .table-nextup tbody tr td {
+        padding: 0.6rem 0.5rem;
+    }
+}
