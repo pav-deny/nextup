@@ -9,11 +9,11 @@ namespace NextUp.Models
         [ForeignKey(nameof(TaskItem))]
         public int TaskId { get; set; }
 
-        public TaskItem Task { get; set; }
+        public TaskItem Task { get; set; } = null!;
 
         [ForeignKey(nameof(Tag))]
         public int TagId { get; set; }
 
-        public Tag Tag { get; set; }
+        public Tag Tag { get; set; } = null!;
     }
 }
