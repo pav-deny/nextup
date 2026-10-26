@@ -14,6 +14,7 @@ namespace NextUp.Models
         public string Title { get; set; } = null!;
 
         [ForeignKey(nameof(Category))]
+        [Range(MinCategoryId, MaxCategoryId, ErrorMessage = CategoryIdErrMsg)]
         public int CategoryId { get; set; }
 
         public Category? Category { get; set; }

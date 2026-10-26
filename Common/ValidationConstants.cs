@@ -22,6 +22,9 @@
         {
             public const int MaxTitleLength = 100;
             public const int MaxNotesLength = 500;
+            public const int MinCategoryId = 1;
+            public const int MaxCategoryId = int.MaxValue;
+            public const string CategoryIdErrMsg = "Please select a valid category";
         }
     }
 }
