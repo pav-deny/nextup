@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using static NextUp.Common.ValidationConstants.CategoryConstants;
 
 namespace NextUp.Models
 {
@@ -10,12 +11,12 @@ namespace NextUp.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
+        [MaxLength(MaxNameLength)]
+        public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(7)]
-        [RegularExpression("^#[0-9A-Fa-f]{6}$", ErrorMessage = "Use a hex color like #FF8C5A.")]
+        [MaxLength(MaxColorHexLength)]
+        [RegularExpression(HexCodeRegEx, ErrorMessage = HexCodeErrMsg)]
         public string ColorHex { get; set; }
     }
 }

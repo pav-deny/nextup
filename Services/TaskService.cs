@@ -2,6 +2,7 @@
 using NextUp.Data;
 using NextUp.Models;
 using NextUp.Services.Interfaces;
+using static NextUp.Common.ValidationConstants;
 
 namespace NextUp.Services
 {
@@ -92,7 +93,7 @@ namespace NextUp.Services
             tagIds ??= new List<int>();  //If tagIds are null make them an empty list
 
             List<Tag> tags = await _context.Tags
-                .Where(t => tagIds.Contains(t.Id) && (t.CategoryId == task.CategoryId || t.CategoryId == 1))
+                .Where(t => tagIds.Contains(t.Id) && (t.CategoryId == task.CategoryId || t.CategoryId == GlobalCategoryId))
                 .ToListAsync();
 
             return tags;

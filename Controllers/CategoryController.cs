@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NextUp.Models;
 using NextUp.Services.Interfaces;
+using static NextUp.Common.ValidationConstants;
+using static NextUp.Common.ErrorMesages;
 
 namespace NextUp.Controllers
 {
@@ -35,7 +37,7 @@ namespace NextUp.Controllers
 
             if (await _service.IsDuplicateAsync(category))
             {
-                ModelState.AddModelError(nameof(category.Name), "A category with this name already exists");
+                ModelState.AddModelError(nameof(category.Name), DuplicateCategoryMsg);
                 return View(category);
             }
 
@@ -46,7 +48,7 @@ namespace NextUp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == 1)
+            if (id == GlobalCategoryId)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -64,7 +66,7 @@ namespace NextUp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Category category)
         {
-            if (id != category.Id || id == 1)
+            if (id != category.Id || id == GlobalCategoryId)
             {
                 return BadRequest();
             }
@@ -76,7 +78,7 @@ namespace NextUp.Controllers
 
             if (await _service.IsDuplicateAsync(category))
             {
-                ModelState.AddModelError(nameof(category.Name), "A category with this name already exists");
+                ModelState.AddModelError(nameof(category.Name), DuplicateCategoryMsg);
                 return View(category);
             }
 
@@ -87,7 +89,7 @@ namespace NextUp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == 1)
+            if (id == GlobalCategoryId)
             {
                 return RedirectToAction(nameof(Index));
             }

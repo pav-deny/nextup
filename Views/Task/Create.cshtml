@@ -1,3 +1,4 @@
+@using static NextUp.Common.ValidationConstants
 @model NextUp.Models.TaskItem
 
 @{
@@ -36,8 +37,8 @@
                         <div class="tag-picker" id="tagPicker">
                             @foreach (var tag in (List<NextUp.Models.Tag>)ViewBag.TagList)
                             {
-                                <label class="tag-toggle @(tag.CategoryId == 1 ? "is-global" : "")" data-category="@tag.CategoryId"
-                                       title="@(tag.CategoryId == 1 ? "Global tag" : "")">
+                                <label class="tag-toggle @(tag.CategoryId == GlobalCategoryId ? "is-global" : "")" data-category="@tag.CategoryId"
+                                       title="@(tag.CategoryId == GlobalCategoryId ? "Global tag" : "")">
                                     <input type="checkbox" name="tagIds" value="@tag.Id"
                                            checked="@(((List<int>)ViewBag.SelectedTagIds).Contains(tag.Id))" />
                                     <span>@tag.Name</span>

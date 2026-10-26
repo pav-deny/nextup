@@ -118,13 +118,13 @@ namespace NextUp.Migrations
 
             modelBuilder.Entity("NextUp.Models.TaskTag", b =>
                 {
-                    b.Property<int>("TaskItemId")
+                    b.Property<int>("TaskId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("TaskItemId", "TagId");
+                    b.HasKey("TaskId", "TagId");
 
                     b.HasIndex("TagId");
 
@@ -161,15 +161,15 @@ namespace NextUp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NextUp.Models.TaskItem", "TaskItem")
+                    b.HasOne("NextUp.Models.TaskItem", "Task")
                         .WithMany("TaskTags")
-                        .HasForeignKey("TaskItemId")
+                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Tag");
 
-                    b.Navigation("TaskItem");
+                    b.Navigation("Task");
                 });
 
             modelBuilder.Entity("NextUp.Models.Tag", b =>
