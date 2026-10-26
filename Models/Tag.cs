@@ -16,6 +16,7 @@ namespace NextUp.Models
         public string Name { get; set; }
 
         [ForeignKey(nameof(Category))]
+        [Range(1, int.MaxValue,ErrorMessage = "Please select a valid category")]
         public int CategoryId { get; set; }
 
         public Category? Category { get; set; }
