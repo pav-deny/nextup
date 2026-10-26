@@ -17,5 +17,11 @@
             public const int MaxCategoryId = int.MaxValue;
             public const string CategoryIdErrMsg = "Please select a valid category";
         }
+
+        public static class Task
+        {
+            public const int MaxTitleLength = 100;
+            public const int MaxNotesLength = 500;
+        }
     }
 }
