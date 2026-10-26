@@ -23,6 +23,7 @@ namespace NextUp.Models
 
         public DateTime EditedOn { get; set; }
 
+        [Display(Name = "Due date")]
         public DateTime DueDateTime { get; set; }
 
         [MaxLength(MaxNotesLength)]
