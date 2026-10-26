@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NextUp.Models;
 using NextUp.Services.Interfaces;
-using static NextUp.Common.ErrorMesages;
+using static NextUp.Common.ErrorMessages;
 
 namespace NextUp.Controllers
 {
