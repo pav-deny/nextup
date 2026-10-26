@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static NextUp.Common.ValidationConstants.Task;
 
 namespace NextUp.Models
 {
@@ -9,7 +10,7 @@ namespace NextUp.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(MaxTitleLength)]
         public string Title { get; set; } = null!;
 
         [ForeignKey(nameof(Category))]
@@ -23,7 +24,7 @@ namespace NextUp.Models
 
         public DateTime DueDateTime { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(MaxNotesLength)]
         public string? Notes { get; set; }
 
         public ICollection<TaskTag> TaskTags { get; set; } = new List<TaskTag>();
