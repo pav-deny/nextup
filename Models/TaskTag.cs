@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NextUp.Models
 {
-    [PrimaryKey(nameof(TaskItemId), nameof(TagId))]
+    [PrimaryKey(nameof(TaskId), nameof(TagId))]
     public class TaskTag
     {
         [ForeignKey(nameof(TaskItem))]
-        public int TaskItemId { get; set; }
+        public int TaskId { get; set; }
 
-        public TaskItem TaskItem { get; set; }
+        public TaskItem Task { get; set; }
 
         [ForeignKey(nameof(Tag))]
         public int TagId { get; set; }
