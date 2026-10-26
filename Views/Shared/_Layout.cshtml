@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -14,34 +14,32 @@
 
 <body class="d-flex flex-column min-vh-100">
     <header>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-nextup mb-4">
-                <div class="container">
-                    <a class="navbar-brand fw-bold gradient-text" asp-controller="Home" asp-action="Index">NextUp</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#mainNav" aria-controls="mainNav"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="mainNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Task" asp-action="Index">Tasks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Category" asp-action="Index">Categories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Tag" asp-action="Index">Tags</a>
-                            </li>
-                        </ul>
-                    </div>
+        <nav class="navbar navbar-expand-sm navbar-dark navbar-nextup mb-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold gradient-text" asp-controller="Home" asp-action="Index">NextUp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNav" aria-controls="mainNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Task" asp-action="Index">Tasks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Category" asp-action="Index">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Tag" asp-action="Index">Tags</a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
     </header>
 
     <div class="container flex-grow-1">

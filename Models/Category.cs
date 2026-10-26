@@ -17,6 +17,6 @@ namespace NextUp.Models
         [Required]
         [MaxLength(MaxColorHexLength)]
         [RegularExpression(HexCodeRegEx, ErrorMessage = HexCodeErrMsg)]
-        public string ColorHex { get; set; }
+        public string ColorHex { get; set; } = null!;
     }
 }
