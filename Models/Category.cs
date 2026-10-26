@@ -12,7 +12,7 @@ namespace NextUp.Models
 
         [Required]
         [MaxLength(MaxNameLength)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
         [MaxLength(MaxColorHexLength)]

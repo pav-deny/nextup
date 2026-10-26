@@ -10,7 +10,7 @@ namespace NextUp.Models
 
         [Required]
         [MaxLength(100)]
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
