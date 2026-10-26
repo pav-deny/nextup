@@ -1,6 +1,6 @@
 # NextUp
 
-What's next at a glance - organize upcoming events and task so you can manage your time.
+What's next at a glance - organize upcoming events and task so you can manage your time and always know what's up next.
 
 ![.NET Version](https://img.shields.io/badge/.NET-8.0-purple)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-8.0-blue)
@@ -13,7 +13,7 @@ What's next at a glance - organize upcoming events and task so you can manage yo
 - [Data model](#-data-model)
 - [Project structure](#-project-structure)
 - [Setup](#%EF%B8%8F-setup)
-- [Future plans (Roadmap)](#-future-plans)
+- [Future plans (Roadmap)](#-future-plans-roadmap)
 - [License](#%EF%B8%8F-license)
 - [Contacts](#-contacts)
 
@@ -49,7 +49,7 @@ NextUp allows you to track upcoming events and tasks. You can organize them by c
 | `Category` | Contains the categories created by the user and seeded from the server (like Global) |
 | `Tag` | Contains the tags created by the user |
 | `TaskItem` | Contains the tasks created by the user |
-| `TaskTag` | Contains a many-to-many join between the `Tags` and the `Tasks` |
+| `TaskTag` | Contains a many-to-many join between `Tag` and `TaskItem` |
 
 # 📂 Project structure
 
@@ -100,19 +100,19 @@ Server=.\SQLEXPRESS;Database=Nextup;Trusted_Connection=True;TrustServerCertifica
 Check using:
 
 ```
-dotnet --version
 dotnet ef --version
 ```
 
-if dotnet isn't found run:
+if dotnet ef isn't found run:
 
 ```
 dotnet tool install --global dotnet-ef
 ```
 
-4. Update the database
+4. Restore the packages and update the database
 
 ```
+dotnet restore
 dotnet ef database update
 ```
 
@@ -121,7 +121,7 @@ dotnet ef database update
 dotnet run
 ```
 
-**If you don't see an https:// port after running stop (Ctrl + C) and run:* 
+*If you don't see an https:// port after running, stop (Ctrl + C) and run:* 
 ```
 dotnet run --launch-profile https
 ```
