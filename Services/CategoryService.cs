@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NextUp.Data;
 using NextUp.Models;
 using NextUp.Services.Interfaces;
+using static NextUp.Common.ValidationConstants;
 
 namespace NextUp.Services
 {
@@ -23,7 +24,7 @@ namespace NextUp.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            if (id == 1)
+            if (id == GlobalCategoryId)
             {
                 return false;
             }

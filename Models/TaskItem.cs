@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static NextUp.Common.ValidationConstants;
-using static NextUp.Common.ValidationConstants.Task;
+using static NextUp.Common.ValidationConstants.TaskConstants;
 
 namespace NextUp.Models
 {

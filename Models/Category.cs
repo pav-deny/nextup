@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using static NextUp.Common.ValidationConstants.Category;
+using static NextUp.Common.ValidationConstants.CategoryConstants;
 
 namespace NextUp.Models
 {

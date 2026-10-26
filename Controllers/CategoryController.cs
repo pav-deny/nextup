@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NextUp.Models;
 using NextUp.Services.Interfaces;
+using static NextUp.Common.ValidationConstants;
 
 namespace NextUp.Controllers
 {
@@ -46,7 +47,7 @@ namespace NextUp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == 1)
+            if (id == GlobalCategoryId)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -64,7 +65,7 @@ namespace NextUp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Category category)
         {
-            if (id != category.Id || id == 1)
+            if (id != category.Id || id == GlobalCategoryId)
             {
                 return BadRequest();
             }
@@ -87,7 +88,7 @@ namespace NextUp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == 1)
+            if (id == GlobalCategoryId)
             {
                 return RedirectToAction(nameof(Index));
             }

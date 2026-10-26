@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static NextUp.Common.ValidationConstants;
-using static NextUp.Common.ValidationConstants.Tag;
+using static NextUp.Common.ValidationConstants.TagConstants;
 
 namespace NextUp.Models
 {

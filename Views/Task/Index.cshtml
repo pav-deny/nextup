@@ -1,3 +1,4 @@
+@using static NextUp.Common.ValidationConstants
 @model IEnumerable<NextUp.Models.TaskItem>
 
 @{
@@ -35,8 +36,8 @@
                         <div class="d-flex flex-wrap gap-1">
                             @foreach (var tt in item.TaskTags)
                             {
-                                <span class="tag-pill @(tt.Tag.CategoryId == 1 ? "is-global" : "")"
-                                      title="@(tt.Tag.CategoryId == 1 ? "Global tag" : "")">@tt.Tag.Name</span>
+                                <span class="tag-pill @(tt.Tag.CategoryId == GlobalCategoryId ? "is-global" : "")"
+                                      title="@(tt.Tag.CategoryId == GlobalCategoryId ? "Global tag" : "")">@tt.Tag.Name</span>
                             }
                         </div>
                     </td>
