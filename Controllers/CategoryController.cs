@@ -2,6 +2,7 @@
 using NextUp.Models;
 using NextUp.Services.Interfaces;
 using static NextUp.Common.ValidationConstants;
+using static NextUp.Common.ErrorMesages;
 
 namespace NextUp.Controllers
 {
@@ -36,7 +37,7 @@ namespace NextUp.Controllers
 
             if (await _service.IsDuplicateAsync(category))
             {
-                ModelState.AddModelError(nameof(category.Name), "A category with this name already exists");
+                ModelState.AddModelError(nameof(category.Name), DuplicateCategoryMsg);
                 return View(category);
             }
 
@@ -77,7 +78,7 @@ namespace NextUp.Controllers
 
             if (await _service.IsDuplicateAsync(category))
             {
-                ModelState.AddModelError(nameof(category.Name), "A category with this name already exists");
+                ModelState.AddModelError(nameof(category.Name), DuplicateCategoryMsg);
                 return View(category);
             }
 

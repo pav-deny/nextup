@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NextUp.Models;
 using NextUp.Services.Interfaces;
+using static NextUp.Common.ErrorMesages;
 
 namespace NextUp.Controllers
 {
@@ -49,7 +50,7 @@ namespace NextUp.Controllers
             if (await _tagService.IsDuplicateAsync(tag))
             {
                 await LoadCategoriesAsync();
-                ModelState.AddModelError(nameof(tag.Name), "A tag with that name already exists in this category!");
+                ModelState.AddModelError(nameof(tag.Name), DuplicateTagMsg);
                 return View(tag);
             }
 
@@ -89,7 +90,7 @@ namespace NextUp.Controllers
             if (await _tagService.IsDuplicateAsync(tag))
             {
                 await LoadCategoriesAsync();
-                ModelState.AddModelError(nameof(tag.Name), "A tag with that name already exists in this category!");
+                ModelState.AddModelError(nameof(tag.Name), DuplicateTagMsg);
                 return View(tag);
             }
 
