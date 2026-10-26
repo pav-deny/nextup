@@ -21,10 +21,10 @@ namespace NextUp.Data
             modelBuilder.Entity<Tag>()
                 .HasOne(t => t.Category)
                 .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict); //Restricts deleting the tags of a category, if the category is deleted, to prevent errors
 
             modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Global", ColorHex = "#D1D1D1" });
+                new Category { Id = 1, Name = "Global", ColorHex = "#D1D1D1" }); //Seeds the Global category
         }
     }
 }

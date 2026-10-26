@@ -24,7 +24,7 @@ namespace NextUp.Services
                 task.TaskTags.Add(new TaskTag { TagId = tag.Id });
             }
 
-            task.EditedOn = task.CreatedOn;
+            task.EditedOn = task.CreatedOn; //At first EditedOn is the same as CreatedOn
 
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
@@ -78,6 +78,8 @@ namespace NextUp.Services
                 originalTask.TaskTags.Add(new TaskTag { TagId = tag.Id });
             }
 
+            //This update is done like this (new info gets passed into old entity instead of replacing the entity with a new one)
+            //because the TaskItem model has properties that have a private set (CreatedOn)
             originalTask.EditedOn = DateTime.UtcNow;
             originalTask.Title = task.Title;
             originalTask.Notes = task.Notes;

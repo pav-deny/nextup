@@ -47,6 +47,7 @@ namespace NextUp.Services
         public async Task<bool> IsDuplicateAsync(Tag tag)
         {
             return await _context.Tags.AnyAsync(t => t.Name == tag.Name && t.CategoryId == tag.CategoryId && t.Id != tag.Id);
+            //Duplicate tags are tags that have the same name in the same category
         }
 
         public async Task UpdateAsync(Tag tag)

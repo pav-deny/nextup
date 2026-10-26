@@ -23,7 +23,7 @@ namespace NextUp.Controllers
             return View(tags);
         }
 
-        //Helper method - loads categories
+        //Helper method - loads categories; used to load the categories where they are used, like in the Create and Edit category `selection
         private async Task LoadCategoriesAsync()
         {
             List<Category> categories = await _categoryService.GetAllAsync();

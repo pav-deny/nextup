@@ -105,6 +105,7 @@ namespace NextUp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Loads the Tags and the Categories; Used in places like the Category selection and the Tag selection
         private async Task LoadFormDataAsync(List<int>? selectedTagIds = null)
         {
             List<Category> categories = await _categoryService.GetAllAsync();
@@ -112,7 +113,8 @@ namespace NextUp.Controllers
 
             List<Tag> tags = await _tagService.GetAllAsync();
             ViewBag.TagList = tags;
-            ViewBag.SelectedTagIds = selectedTagIds ?? new List<int>();
+            ViewBag.SelectedTagIds = selectedTagIds ?? new List<int>(); //Shows which tags are selected (Used in Edit)
+            //If there are none, it creates an empty list
         }
     }
 }

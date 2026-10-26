@@ -24,7 +24,7 @@ namespace NextUp.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            if (id == GlobalCategoryId)
+            if (id == GlobalCategoryId) //Global category (id = 1) can't be deleted
             {
                 return false;
             }
@@ -36,8 +36,9 @@ namespace NextUp.Services
                 return false;
             }
 
+            //Removes the category's tags, because the DbContext doesn't allow their Cascade deletion 
             List<Tag> tags = await _context.Tags.Where(t => t.CategoryId == category.Id).ToListAsync();
-            _context.Tags.RemoveRange(tags);
+            _context.Tags.RemoveRange(tags); 
 
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();

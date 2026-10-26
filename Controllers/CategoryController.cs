@@ -48,7 +48,7 @@ namespace NextUp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == GlobalCategoryId)
+            if (id == GlobalCategoryId) //Global category (id = 1) can't be edited
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -66,7 +66,7 @@ namespace NextUp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Category category)
         {
-            if (id != category.Id || id == GlobalCategoryId)
+            if (id != category.Id || id == GlobalCategoryId) //Global category (id = 1) can't be edited
             {
                 return BadRequest();
             }
@@ -89,7 +89,7 @@ namespace NextUp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == GlobalCategoryId)
+            if (id == GlobalCategoryId) // Global category (id = 1) can't be deleted
             {
                 return RedirectToAction(nameof(Index));
             }
