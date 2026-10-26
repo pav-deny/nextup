@@ -5,6 +5,7 @@
         public const int MinCategoryId = 1;
         public const int MaxCategoryId = int.MaxValue;
         public const string CategoryIdErrMsg = "Please select a valid category";
+        public const int GlobalCategoryId = 1;
 
         public static class Category
         {
