@@ -7,7 +7,7 @@
         public const string CategoryIdErrMsg = "Please select a valid category";
         public const int GlobalCategoryId = 1;
 
-        public static class Category
+        public static class CategoryConstants
         {
             public const int MaxNameLength = 50;
             public const int MaxColorHexLength = 7; //Includes # (6 color-hex characters + # = 7)
@@ -15,12 +15,12 @@
             public const string HexCodeErrMsg = "Use a hex color like #FF8C5A.";
         }
 
-        public static class Tag
+        public static class TagConstants
         {
             public const int MaxNameLength = 50;
         }
 
-        public static class Task
+        public static class TaskConstants
         {
             public const int MaxTitleLength = 100;
             public const int MaxNotesLength = 500;
