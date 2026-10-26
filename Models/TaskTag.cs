@@ -6,7 +6,7 @@ namespace NextUp.Models
     [PrimaryKey(nameof(TaskId), nameof(TagId))]
     public class TaskTag
     {
-        [ForeignKey(nameof(TaskItem))]
+        [ForeignKey(nameof(Task))]
         public int TaskId { get; set; }
 
         public TaskItem Task { get; set; } = null!;

@@ -48,12 +48,13 @@ namespace NextUp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             TaskItem? task = await _taskService.GetByIdAsync(id);
-            List<int> selectedIds = task.TaskTags.Select(tt => tt.TagId).ToList();
 
             if (task == null)
             {
                 return NotFound();
             }
+
+            List<int> selectedIds = task.TaskTags.Select(tt => tt.TagId).ToList();
 
             await LoadFormDataAsync(selectedIds);
             return View(task);
