@@ -21,7 +21,7 @@ What's next at a glance - organize upcoming events and task so you can manage yo
 
 NextUp is a task management web app built as the final project for the `ASP.NET Fundamentals` course at `SoftUni`. It is currently in a local self-hosted state but I plan on expanding it after I finish the course.
 
-NextUp allows you to track upcoming events and tasks. You can organize them by cateogries and tags.
+NextUp allows you to track upcoming events and tasks. You can organize them by categories and tags.
 
 # 🚀 Features
 - Create Categories, Tags and Tasks
@@ -134,7 +134,7 @@ http://localhost:5214
 https://localhost:7171
 ```
 
-### Enviroment variables and credentials
+### Environment variables and credentials
 None. The default connection uses Windows authentication
 
 # 🎯 Future plans (Roadmap)
