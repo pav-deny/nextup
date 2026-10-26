@@ -14,6 +14,8 @@
         {
             public const int MaxNameLength = 50;
             public const int MinCategoryId = 1;
+            public const int MaxCategoryId = int.MaxValue;
+            public const string CategoryIdErrMsg = "Please select a valid category";
         }
     }
 }
