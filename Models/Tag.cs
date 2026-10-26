@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static NextUp.Common.ValidationConstants.Tag;
 
 namespace NextUp.Models
 {
@@ -11,7 +12,7 @@ namespace NextUp.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(MaxNameLength)]
         public string Name { get; set; }
 
         [ForeignKey(nameof(Category))]
